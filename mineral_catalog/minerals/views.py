@@ -8,11 +8,13 @@ from .models import Mineral
 
 
 def mineral_list(request):
+    """Shows a list of all minerals sorted by name."""
     minerals = Mineral.objects.order_by(Lower('name'))
     return render(request, 'minerals/index.html', {'minerals': minerals})
 
 
 def mineral_detail(request, pk):
+    """Shows mineral details."""
     ordered_properties = OrderedDict()
     order = [
         'name',

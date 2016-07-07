@@ -13,16 +13,14 @@
         <table class="mineral__table">
           {% for name, value in properties.items %}
             {% if name != 'name' and name != 'image_filename' and name != 'image_caption' %}
-                {% if value %}
-                  <tr>
-                      <td class="mineral__category">{{ name|underscore_to_space|title }}</td>
-                  {% if name == 'formula' %}
-                      <td>{{ value|safe }}</td>
-                  {% else %}
-                      <td>{{ value }}</td>
-                  {% endif %}
-                  </tr>
-                {% endif %}
+              <tr>
+                  <td class="mineral__category">{{ name|underscore_to_space|title }}</td>
+              {% if name == 'formula' %}
+                  <td>{{ value|safe }}</td>
+              {% else %}
+                  <td>{{ value }}</td>
+              {% endif %}
+              </tr>
             {% endif %}
           {% endfor %}
         </table>
