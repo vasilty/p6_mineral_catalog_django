@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+{% load mineral_extras %}
+
+{% block content %}
+    <div class="grid-100 mineral__container">
+      <h1 class="mineral__name">{{ properties.name }}</h1>
+      <div class="mineral__image-bg">
+        <img class="mineral__image" src="{% static 'images/' %}{{ properties.image_filename }}">
+        <p class="mineral__caption">{{ properties.image_caption }}</p>
+      </div>
+      <div class="mineral__table-container">
+        <table class="mineral__table">
+          {% for name, value in properties.items %}
+            {% if name != 'name' and name != 'image_filename' and name != 'image_caption' %}
+                {% if value %}
+                  <tr>
+                      <td class="mineral__category">{{ name|underscore_to_space|title }}</td>
+                  {% if name == 'formula' %}
+                      <td>{{ value|safe }}</td>
+                  {% else %}
+                      <td>{{ value }}</td>
+                  {% endif %}
+                  </tr>
+                {% endif %}
+            {% endif %}
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+{% endblock %}
